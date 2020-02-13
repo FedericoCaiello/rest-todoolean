@@ -56,7 +56,7 @@ function createTodo (todoValue) {
       }
     });
 }
-
+// DELETE - CRUD
 function deleteTodo(id) {
   $.ajax (
     {
