@@ -20,8 +20,11 @@
 
 
     <script id="entry-template" type="text/x-handlebars-template">
-      <li class="todo">
+      <li class="todo" data-id={{id}}>
         {{text}}
+        <div class="delete-todo">
+          X
+        </div>
       </li>
 
     </script>

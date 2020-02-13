@@ -3,7 +3,12 @@ $(document).ready(function (){
   $('#button-add').click(function (){
     var todoValue = $('#input-add').val();
     createTodo(todoValue);
-  })
+  });
+  $(document).on('click', '.delete-todo',function (){
+    var buttonDelete = $(this);
+    var idTodo = buttonDelete.parent().attr('data-id');
+    deleteTodo(idTodo);
+  });
 });
 // READ - CRUD
 function allTodos () {
@@ -13,7 +18,6 @@ function allTodos () {
       method: 'GET',
       success: function (data) {
         var todos = data;
-        console.log(todos);
         var source = $('#entry-template').html();
         var template = Handlebars.compile(source);
 
@@ -21,6 +25,7 @@ function allTodos () {
           var todo = todos[i];
           var context = {
             text: todo.text,
+            id: todo.id
            }
            var html = template(context);
            $('ol').append(html);
@@ -51,3 +56,18 @@ function createTodo (todoValue) {
       }
     });
 }
+
+function deleteTodo(id) {
+  $.ajax (
+    {
+      url: 'http://157.230.17.132:3004/todos/' + id,
+      method: 'DELETE',
+      success: function (data) {
+        $('ol.todos').html('');
+        allTodos();
+      },
+      error: function () {
+        alert('errore');
+      }
+    });
+};
