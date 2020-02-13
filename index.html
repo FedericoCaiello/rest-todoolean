@@ -9,13 +9,21 @@
     <title></title>
   </head>
   <body>
+    <input type="text" name="" value="" placeholder="inserisci un testo">
+    <button type="button" name="button">Salva</button>
+
+    <h2>Todos</h2>
+    <ul class="todos">
+
+    </ul>
+
+
+
     <script id="entry-template" type="text/x-handlebars-template">
-    <div class="entry">
-      <h1>{{title}}</h1>
-      <div class="body">
-        {{body}}
-      </div>
-    </div>
+      <li class="todo">
+        {{text}}
+      </li>
+
     </script>
     <script src="js/script.js" charset="utf-8"></script>
   </body>
