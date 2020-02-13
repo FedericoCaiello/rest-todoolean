@@ -1,7 +1,11 @@
 $(document).ready(function (){
   allTodos();
+  $('#button-add').click(function (){
+    var todoValue = $('#input-add').val();
+    createTodo(todoValue);
+  })
 });
-
+// READ - CRUD
 function allTodos () {
   $.ajax(
     {
@@ -19,8 +23,28 @@ function allTodos () {
             text: todo.text,
            }
            var html = template(context);
-           $('ul').append(html);
+           $('ol').append(html);
         }
+      },
+      error: function () {
+        alert('errore');
+      }
+    });
+}
+// CREATE - CRUD
+function createTodo (todoValue) {
+  $.ajax(
+    {
+      url: 'http://157.230.17.132:3004/todos',
+      method: 'POST',
+      data: {
+        text: todoValue
+      },
+      success: function (data) {
+        console.log('invio effettuato');
+        $('ol.todos').html('');
+        allTodos();
+
       },
       error: function () {
         alert('errore');
